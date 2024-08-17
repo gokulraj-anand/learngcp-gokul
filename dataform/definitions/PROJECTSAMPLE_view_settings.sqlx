@@ -1,0 +1,18 @@
+config {
+  type: "view",
+  name: "vw_settings"
+}
+
+SELECT
+  '${dataform.projectConfig.defaultLocation}' AS default_location,
+  --for defaultProject in workflow_settings we have to use defaultDatabase
+  '${dataform.projectConfig.defaultDatabase}' AS default_project,
+  --for defaultDataset in workflow_settings we have to use defaultSchema
+  '${dataform.projectConfig.defaultSchema}' AS default_dataset,
+  --user defined variable
+  '${dataform.projectConfig.vars.executionSetting}' AS uservar_executionsetting,
+  '${when(
+    dataform.projectConfig.vars.executionSetting === "dev",
+    "variable execution setting is dev",
+    "no variable defined"
+  )}' AS uservar_definitionchk
