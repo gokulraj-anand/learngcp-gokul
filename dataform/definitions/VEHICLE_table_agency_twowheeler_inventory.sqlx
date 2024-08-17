@@ -1,0 +1,38 @@
+config {
+    type: "table",
+    description: "Table with Inventory Details of Two Wheelers along with Agency details in Bengaluru",
+    name: "tbl_twowheeler_agency_inventory",
+    tags: "inventory_twowheelers",
+    columns: {
+        vehicle_id: "ID Number for the Vehicle, Unique to Model, Make and Year",
+        manufacturer: "Name of the Vehicle Manufacturer",
+        model_name: "Model Name/Number of the Vehicle",
+        make_year: "Year of the Vehicle Manufacture",
+        total_inventory: "Total number of vehicles available for sale in that Model",
+        agency_id: "ID Number of the agency",
+        agency_name: "Name of the agency",
+        agency_address: "Address of the agency",
+        agency_inventory: "Number of vehicles available for sale in that Model in that agency"
+    }
+}
+
+SELECT
+  VH.vehicle_id,
+  VH.manufacturer,
+  VH.model_name,
+  VH.make_year,
+  VH.inventory AS total_inventory,
+  SA.agency_id,
+  SA.agency_name,
+  SA.agency_address,
+  SAI.agency_inventory AS agency_inventory
+FROM
+  ${ref("vw_vehicles")} AS VH
+INNER JOIN
+  ${ref("bqdataset", "tbl_sales_agency_inventory")} SAI
+ON
+  VH.vehicle_id = SAI.vehicle_id
+INNER JOIN
+  ${ref("bqdataset", "tbl_sales_agency")} SA
+ON
+  SAI.agency_id = SA.agency_id
