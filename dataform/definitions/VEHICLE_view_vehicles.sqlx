@@ -1,0 +1,14 @@
+config {
+    type: "view",
+    name: "vw_vehicles",
+    tags: "inventory_twowheelers"
+}
+
+SELECT
+  ${generate_vehicelid.generateid('manufacturer','model_name','make_year')} AS vehicle_id,
+  manufacturer,
+  model_name,
+  make_year,
+  inventory
+FROM
+  ${ref("tbl_twowheelers")}
