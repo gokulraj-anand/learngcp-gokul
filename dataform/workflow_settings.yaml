@@ -1,0 +1,7 @@
+defaultProject: learngcp-gokul
+defaultLocation: US
+defaultDataset: bqdataset
+defaultAssertionDataset: dataform_assertions
+dataformCoreVersion: 3.0.0-beta.4
+vars:
+    executionSetting: dev
