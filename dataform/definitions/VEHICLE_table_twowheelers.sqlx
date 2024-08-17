@@ -1,0 +1,48 @@
+config {
+    type: "table",
+    description: "Table with Inventory Details of Two Wheelers available in Bengaluru",
+    name: "tbl_twowheelers",
+    tags: "inventory_twowheelers",
+    columns: {
+        manufacturer: "Name of the Vehicle Manufacturer",
+        model: "Model Name/Number of the Vehicle",
+        make_year: "Year of the Vehicle Manufacture",
+        inventory: "Number of vehicles available for sale"
+    }
+}
+
+SELECT
+  "honda" AS manufacturer,
+  "activa" AS model_name,
+  2021 AS make_year,
+  22000 AS inventory
+UNION ALL
+SELECT
+  "honda" AS manufacturer,
+  "cb350rs" AS model_name,
+  2023 AS make_year,
+  10000 AS inventory
+UNION ALL
+SELECT
+  "suzuki" AS manufacturer,
+  "access125" AS model_name,
+  2019 AS make_year,
+  8000 AS inventory
+UNION ALL
+SELECT
+  "suzuki" AS manufacturer,
+  "access125" AS model_name,
+  2021 AS make_year,
+  34000 AS inventory
+UNION ALL
+SELECT
+  "bajaj" AS manufacturer,
+  "pulsar200" AS model_name,
+  2018 AS make_year,
+  6000 AS inventory
+UNION ALL
+SELECT
+  "honda" AS manufacturer,
+  "dio" AS model_name,
+  2016 AS make_year,
+  2500 AS inventory
