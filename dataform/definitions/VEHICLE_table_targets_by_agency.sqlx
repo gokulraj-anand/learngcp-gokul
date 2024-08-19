@@ -1,0 +1,88 @@
+config {
+    type: "table",
+    description: "Table with target numbers by agency",
+    tags: "inventory_twowheelers",
+    columns: {
+        agency_id: "Id Number of the agency",
+        sale_month: "Month of Sale",
+        targets: "Target number for the agency"
+
+    }
+}
+
+SELECT 
+"BNG_STH_HND1" as agency_id,
+DATE '2024-04-01' as sale_month,
+3000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_HND1" as agency_id,
+DATE '2024-05-01' as sale_month,
+4000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_HND1" as agency_id,
+DATE '2024-06-01' as sale_month,
+1000 as targets
+UNION ALL
+SELECT 
+"BNG_NTH_HND2" as agency_id,
+DATE '2024-04-01' as sale_month,
+2000 as targets
+UNION ALL
+SELECT 
+"BNG_NTH_HND2" as agency_id,
+DATE '2024-05-01' as sale_month,
+2000 as targets
+UNION ALL
+--Target present for HND2 for June 2024
+SELECT 
+"BNG_NTH_HND2" as agency_id,
+DATE '2024-06-01' as sale_month,
+2000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_BJJ1" as agency_id,
+DATE '2024-04-01' as sale_month,
+2000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_BJJ1" as agency_id,
+DATE '2024-05-01' as sale_month,
+2000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_BJJ1" as agency_id,
+DATE '2024-06-01' as sale_month,
+1000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK2" as agency_id,
+DATE '2024-04-01' as sale_month,
+3000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK2" as agency_id,
+DATE '2024-05-01' as sale_month,
+3000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK2" as agency_id,
+DATE '2024-06-01' as sale_month,
+3000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK1" as agency_id,
+DATE '2024-04-01' as sale_month,
+5000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK1" as agency_id,
+DATE '2024-05-01' as sale_month,
+5000 as targets
+UNION ALL
+SELECT 
+"BNG_STH_SZK1" as agency_id,
+DATE '2024-06-01' as sale_month,
+5000 as targets
+
