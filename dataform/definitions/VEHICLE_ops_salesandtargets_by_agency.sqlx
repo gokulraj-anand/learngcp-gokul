@@ -1,0 +1,55 @@
+config {
+    type: "operations",
+    tags: "inventory_twowheelers"
+}
+
+  --Truncate table for full load
+TRUNCATE TABLE
+  ${ref("bqdataset", "tbl_salesandtargets_by_agency")};
+  
+  --Insert sales and target numbers for all agencies with actuals for a month
+INSERT INTO
+  ${ref("bqdataset", "tbl_salesandtargets_by_agency")}
+SELECT
+  SA.agency_id,
+  SA.agency_name,
+  SA.agency_city,
+  SbA.sale_month,
+  SbA.sales,
+  TA.targets
+FROM
+  ${ref("bqdataset", "tbl_sales_agency")} SA
+LEFT JOIN
+  ${ref("tbl_sales_by_agency")} SbA
+ON
+  SA.agency_id = SbA.agency_id
+LEFT JOIN
+  ${ref("tbl_targets_by_agency")} TA
+ON
+  SbA.agency_id = TA.agency_id
+  AND SbA.sale_month = TA.sale_month;
+
+
+  --Insert sales and target numbers for all agencies without actuals for particular month
+INSERT INTO
+  ${ref("bqdataset", "tbl_salesandtargets_by_agency")}
+SELECT
+  SA.agency_id,
+  SA.agency_name,
+  SA.agency_city,
+  TA.sale_month,
+  NULL AS sales,
+  TA.targets
+FROM
+  `bqdataset.tbl_sales_agency` SA
+LEFT JOIN
+  `bqdataset.tbl_targets_by_agency` TA
+ON
+  SA.agency_id = TA.agency_id
+LEFT JOIN
+  `bqdataset.tbl_sales_by_agency` SbA
+ON
+  SbA.agency_id = TA.agency_id
+  AND SbA.sale_month = TA.sale_month
+WHERE
+  SbA.agency_id IS NULL;
