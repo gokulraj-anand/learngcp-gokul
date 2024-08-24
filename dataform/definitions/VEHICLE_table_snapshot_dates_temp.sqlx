@@ -1,0 +1,7 @@
+config {
+  type: "table",
+  name: "tbl_snapshot_dates_temp"
+}
+
+select distinct sale_month as snapshot_date
+from ${ref("tbl_targets_by_agency")}
