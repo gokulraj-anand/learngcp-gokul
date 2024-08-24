@@ -1,0 +1,29 @@
+config {
+  type: "operations",
+  tags: "inventory_twowheelers"
+}
+
+BEGIN
+  -- Generate and execute the SQL statements for inserting data
+  FOR snapshot_date_row IN (
+    SELECT
+      ROW_NUMBER() OVER () AS row_counter,
+      snapshot_date
+    FROM
+      ${ref("tbl_snapshot_dates_temp")}
+  ) DO
+    EXECUTE IMMEDIATE FORMAT("""
+      DELETE FROM `bqdataset.tbl_agency_inventory_snapshot`
+      WHERE snapshot_date = DATE('%s')
+    """,FORMAT_DATE('%Y-%m-%d', snapshot_date_row.snapshot_date));
+    EXECUTE IMMEDIATE FORMAT("""
+      INSERT INTO `bqdataset.tbl_agency_inventory_snapshot` (snapshot_date, agency_id, vehicle_id, agency_inventory, modified_dt )
+      SELECT DATE('%s'),
+      agency_id,
+      vehicle_id,
+      agency_inventory,
+      CURRENT_TIMESTAMP
+      FROM bqdataset.tbl_sales_agency_inventory
+    """,FORMAT_DATE('%Y-%m-%d', snapshot_date_row.snapshot_date));
+  END FOR;
+END;
