@@ -1,0 +1,9 @@
+SELECT 'John Doe' AS customer_name, 'john.doe@example.com' AS email, '123-456-7890' AS phone_number, '123 Main St, Springfield, IL' AS address, 'N' as delete_flag
+UNION ALL
+SELECT 'Jane Smith', 'jane.smith@example.com', '987-654-3210', '456 Elm St, Springfield, IL', 'N'
+UNION ALL
+SELECT 'Alice Johnson', 'alice.johnson@example.com', '555-123-4567', '789 Oak St, Springfield, IL', 'N'
+UNION ALL
+SELECT 'Bob Brown', 'bob.brown@example.com', '444-555-6666', '101 Pine St, Springfield, IL', 'N'
+UNION ALL
+SELECT 'Charlie Davis', 'charlie.davis@example.com', '333-444-5555', '202 Cedar St, Springfield, IL', 'N'
